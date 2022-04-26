@@ -52,9 +52,11 @@ rewire_openfire
 initialize_data_dir
 initialize_log_dir
 
+JAVA_BIN=${JAVA_HOME}/bin/java
+
 # default behaviour is to launch openfire
 if [[ -z ${1} ]]; then
-  exec start-stop-daemon --start --chuid ${OPENFIRE_USER}:${OPENFIRE_USER} --exec /usr/bin/java -- \
+  exec start-stop-daemon --start --chuid ${OPENFIRE_USER}:${OPENFIRE_USER} --exec ${JAVA_BIN} -- ${JAVA_OPTS} \
     -server \
     -DopenfireHome="${OPENFIRE_DIR}" \
     -Dopenfire.lib.dir=${OPENFIRE_DIR}/lib \
